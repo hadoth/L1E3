@@ -1,6 +1,6 @@
 #include <iostream>
-#include "CircularBuffer.h"
 #include <cmath>
+#include "CircularBuffer.h"
 
 int main() {
     std::srand(time(NULL));
@@ -69,11 +69,18 @@ int main() {
     std::cout << std::endl;
     std::cout << std::endl;
 
-    std::cout << "buffer size:" <<buffer.size() << "(" << buffer.peek() << ")" << std::endl;
+    std::cout << "buffer size:" <<buffer.size() << " (buffer tail: " << buffer.peek() << ")" << std::endl;
     CircularBuffer<int> moveBuffer = std::move(buffer);
     std::cout << "buffer size after move:" << buffer.size() << std::endl;
-    std::cout << "move buffer size:" << moveBuffer.size() << "(" << moveBuffer.peek() << ")" << std::endl;
+    std::cout << "move buffer size:" << moveBuffer.size() << " (buffer tail: " << moveBuffer.peek() << ")" << std::endl;
 
+    std::string words [3] = {"ready", "set", "go!"};
+
+    CircularBuffer<std::string> *stringBuffer = new CircularBuffer<std::string>(20, words, 3);
+
+    while (!stringBuffer->isEmpty()) {
+        std::cout << stringBuffer->pop() << std::endl;
+    }
 
     return 0;
 }
