@@ -35,8 +35,7 @@ template <class T> CircularBuffer<T>::CircularBuffer(CircularBuffer<T> &&another
     head = anotherBuffer.head;
     tail = anotherBuffer.tail;
     isBufferFull = anotherBuffer.isBufferFull;
-    circularBuffer = new T[maxSize];
-    memmove(circularBuffer, anotherBuffer.circularBuffer, maxSize * sizeof(T));
+    circularBuffer = anotherBuffer.circularBuffer;
 
     anotherBuffer.maxSize = DEFAULT_CAPACITY;
     anotherBuffer.head = 0;
