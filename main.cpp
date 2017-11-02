@@ -82,5 +82,13 @@ int main() {
         std::cout << stringBuffer->pop() << std::endl;
     }
 
+    while (!buffer.isFull()) {
+        buffer.push(rand());
+    }
+
+    std::cout << "is buffer full: " << buffer.isFull() << " (" << buffer.size() << ")" << std::endl;
+    buffer.clear();
+    std::cout << "is buffer full: " << buffer.isFull() << " (" << buffer.size() << ")" << std::endl;
+    
     return 0;
 }
